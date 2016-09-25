@@ -3,27 +3,14 @@ CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG -= qt
 
-SOURCES += main.cpp \
-    kernelreader.cpp \
-    clexecutor.cpp \
-    clvectoradd.cpp
-
-HEADERS += \
-    kernelreader.h \
-    clexecutor.h \
-    clvectoradd.h
+SOURCES += main.cpp
 
 QMAKE_CXXFLAGS += -fpermissive
 
 DEFINES += __CL_ENABLE_EXCEPTIONS=1
 
 unix:!macx: LIBS += -L/opt/develop/libs/lib/ \
-                    -lopencv_aruco \
-                    -lopencv_bgsegm \
-                    -lopencv_bioinspired \
                     -lopencv_calib3d \
-                    -lopencv_ccalib \
-                    -lopencv_cnn_3dobj \
                     -lopencv_core \
                     -lopencv_cudaarithm \
                     -lopencv_cudabgsegm \
@@ -37,44 +24,20 @@ unix:!macx: LIBS += -L/opt/develop/libs/lib/ \
                     -lopencv_cudastereo \
                     -lopencv_cudawarping \
                     -lopencv_cudev \
-                    -lopencv_cvv \
-                    -lopencv_datasets \
-                    -lopencv_dnn \
-                    -lopencv_dpm \
-                    -lopencv_face \
                     -lopencv_features2d \
                     -lopencv_flann \
-                    -lopencv_fuzzy \
-                    -lopencv_hdf \
                     -lopencv_highgui \
                     -lopencv_imgcodecs \
                     -lopencv_imgproc \
-                    -lopencv_line_descriptor \
                     -lopencv_ml \
                     -lopencv_objdetect \
-                    -lopencv_optflow \
                     -lopencv_photo \
-                    -lopencv_plot \
-                    -lopencv_reg \
-                    -lopencv_rgbd \
-                    -lopencv_saliency \
-                    -lopencv_sfm \
                     -lopencv_shape \
-                    -lopencv_stereo \
                     -lopencv_stitching \
-                    -lopencv_structured_light \
                     -lopencv_superres \
-                    -lopencv_surface_matching \
-                    -lopencv_text \
-                    -lopencv_tracking \
                     -lopencv_videoio \
                     -lopencv_video \
                     -lopencv_videostab \
-                    -lopencv_viz \
-                    -lopencv_xfeatures2d \
-                    -lopencv_ximgproc \
-                    -lopencv_xobjdetect \
-                    -lopencv_xphoto \
                     -lboost_atomic \
                     -lboost_chrono \
                     -lboost_container \
@@ -108,10 +71,11 @@ unix:!macx: LIBS += -L/opt/develop/libs/lib/ \
                     -lboost_unit_test_framework \
                     -lboost_wave \
                     -lboost_wserialization \
-                    -lboost_iostreams \
+                    -lyaml-cpp \
                     -L/usr/local/cuda/lib64 \
                     -lOpenCL \
-                    -lyaml-cpp
+                    -ltinyxml2
+
 
 INCLUDEPATH += $$PWD/../../../../../../opt/develop/libs/include
 DEPENDPATH += $$PWD/../../../../../../opt/develop/libs/include
