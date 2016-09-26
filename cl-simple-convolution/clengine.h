@@ -7,6 +7,7 @@
 #endif
 #include <vector>
 #include <map>
+#include "clkernel.h"
 
 class CLEngine
 {
@@ -16,7 +17,7 @@ public:
     bool execute(const std::string & kernel_name, cl_kernel kernel,
                  size_t* global_work_size, size_t* local_work_size);
     bool readBufferResult(cl_mem mem,size_t size,void *host_mem);
-
+    bool readBufferResults(cl_buffer_map_t & buffers);
     cl_context getContext()const;
     std::vector<cl_device_id> getDevices()const;
     cl_device_id getFirstDevice()const;

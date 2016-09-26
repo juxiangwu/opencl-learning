@@ -42,103 +42,105 @@ CLKernelConfig CLKernelConfigParser::parase(const std::string & configpath){
 
 void CLKernelConfigParser::parseKernelArg(XMLElement * root,CLKernelConfig& config){
     XMLElement * sub_node = root->FirstChildElement();
-    CLKernelArg * arg = new CLKernelArg;
+    CLKernelArg  arg;
     do{
         std::string node_name = sub_node->Name();
         if(node_name == "arg-index"){
             const char * idx_str = sub_node->GetText();
             if(idx_str){
                 int index = boost::lexical_cast<int>(sub_node->GetText());
-                arg->setIndex(index);
+                arg.setIndex(index);
             }
+            std::cout << "parse:arg-index:" << arg.getIndex() << std::endl;
         }else if(node_name == "arg-name"){
             const char * name_str = sub_node->GetText();
             if(name_str){
-                arg->setName(std::string(name_str));
+                arg.setName(std::string(name_str));
             }else{
-                arg->setName(std::string(""));
+                arg.setName(std::string(""));
             }
         }else if(node_name == "data-type"){
             const char * data_type_str = sub_node->GetText();
             if(data_type_str){
                 int data_type = CLArgDataConverter::getDataType(std::string(data_type_str));
-                arg->setDataType(data_type);
+                arg.setDataType(data_type);
             }else{
-                arg->setDataType(ARG_DATA_TYPE_NONE);
+                arg.setDataType(ARG_DATA_TYPE_NONE);
             }
         }else if(node_name == "data-length"){
             const char * data_len_str = sub_node->GetText();
             if(data_len_str){
                 int len = boost::lexical_cast<int>(data_len_str);
-                arg->setDataLength(len);
+                arg.setDataLength(len);
             }else{
-                arg->setDataLength(0);
+                arg.setDataLength(0);
             }
         }else if(node_name == "arg-type"){
             const char * arg_type_str = sub_node->GetText();
             if(arg_type_str){
                 int type = CLArgDataConverter::getInputType(std::string(arg_type_str));
-                arg->setType(type);
+                arg.setType(type);
             }else{
-                arg->setType(ARG_DATA_INPUT_OUTPUT_NONE);
+                arg.setType(ARG_DATA_INPUT_OUTPUT_NONE);
             }
         }else if(node_name == "read-write-type"){
             const char * read_write_str = sub_node->GetText();
             if(read_write_str){
                 int type = CLArgDataConverter::getReadWriteType(std::string(read_write_str));
-                arg->setReadWriteType(type);
+                arg.setReadWriteType(type);
             }else{
-                arg->setReadWriteType(ARG_READ_WRITE_NONE);
+                arg.setReadWriteType(ARG_READ_WRITE_NONE);
             }
         }else if(node_name == "data"){
             const char * attr_use_opencv_matrix = sub_node->Attribute("use-opencv-matrix");
             if(attr_use_opencv_matrix){
                 bool used = CLArgDataConverter::getBooleanType(std::string(attr_use_opencv_matrix));
-                arg->setUseOpenCVMatrix(used);
+                arg.setUseOpenCVMatrix(used);
             }else{
-                arg->setUseOpenCVMatrix(false);
+                arg.setUseOpenCVMatrix(false);
             }
 
             const char * attr_data_path = sub_node->Attribute("data-path");
             if(attr_data_path){
-                arg->setDataPath(std::string(attr_data_path));
+                arg.setDataPath(std::string(attr_data_path));
             }else{
-                arg->setDataPath("");
+                arg.setDataPath("");
             }
 
             const char * attr_data_dim = sub_node->Attribute("data-dim");
             if(attr_data_dim){
                 int dim = boost::lexical_cast<int>(attr_data_dim);
-                arg->setDataDim(dim);
+                arg.setDataDim(dim);
             }else{
-                arg->setDataDim(0);
+                arg.setDataDim(0);
             }
 
             const char * attr_data_cols = sub_node->Attribute("data-cols");
             if(attr_data_cols){
                 int cols = boost::lexical_cast<int>(attr_data_cols);
-                arg->setDataCols(cols);
+                arg.setDataCols(cols);
             }else{
-                arg->setDataCols(0);
+                arg.setDataCols(0);
             }
 
             const char * attr_data_rows = sub_node->Attribute("data-rows");
             if(attr_data_rows){
                 int rows = boost::lexical_cast<int>(attr_data_rows);
-                arg->setDataRows(rows);
+                arg.setDataRows(rows);
             }else{
-                arg->setDataRows(0);
+                arg.setDataRows(0);
             }
 
             const char * data_str = sub_node->GetText();
             if(data_str){
-                arg->setData(std::string(data_str));
+                arg.setData(std::string(data_str));
+                std::cout << "parase:data:"<<arg.getData() << std::endl;
             }else{
-                arg->setData(std::string(""));
+                arg.setData(std::string(""));
             }
 
         }
         sub_node = sub_node->NextSiblingElement();
     }while(sub_node);
-    config.addKernelArg(arg->getName(),arg);
+    config.addKernelArg(arg.getName(),arg);
 }

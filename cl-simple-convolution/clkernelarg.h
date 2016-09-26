@@ -17,7 +17,7 @@ public:
     int getType()const;
     void setReadWriteType(int type);
     int getReadWriteType()const;
-    void setData(const std::string &data);
+    void setData(const std::string data);
     std::string getData()const;
     void setUseOpenCVMatrix(bool use);
     bool getUseOpenCVMatrix()const;

@@ -6,4 +6,6 @@ SUBDIRS += \
     cl-platform-info \
     cl-device-info \
     cl-simple-convolution \
-    yaml-cpp-demo
+    yaml-cpp-demo \
+    cl-tinyengine \
+    cl-tinyenginelib

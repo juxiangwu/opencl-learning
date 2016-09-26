@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <cl-kernel-config>
 	<kernel-name>vector_add</kernel-name>
-	<kernel-path>./kernels/vector-add.cl</kernel-path>
+	<kernel-path>/home/jenson/Develop/QtCreator/opencl-cpp/datas/kernels/kernel_vector_add.cl</kernel-path>
 	<kernel-args>
 		<kernel-arg>
 			<arg-index>0</arg-index>
 			<arg-name>vec1_mem</arg-name>
-			<data-type>long</data-type>
+			<data-type>int</data-type>
 			<data-length>9</data-length>
 			<arg-type>input</arg-type>
 			<read-write-type>read-only</read-write-type>
@@ -15,16 +15,16 @@
 		<kernel-arg>
 			<arg-index>1</arg-index>	
 			<arg-name>vec2_mem</arg-name>
-			<data-type>long</data-type>
+			<data-type>int</data-type>
 			<data-length>9</data-length>
 			<read-write-type>read-only</read-write-type>
 			<arg-type>input</arg-type>
-			<data use-opencv-matrix="true" data-path="./cvdatas/vec_add.yaml">1,2,1,3,4,5,6,7,8,9</data>
+			<data use-opencv-matrix="false">1,2,3,4,5,6,7,8,9</data>
 		</kernel-arg>
 		<kernel-arg>
 			<arg-index>2</arg-index>	
 			<arg-name>output_mem</arg-name>
-			<data-type>double</data-type>
+			<data-type>int</data-type>
 			<data-length>9</data-length>
 			<arg-type>output</arg-type>
 			<read-write-type>read-write</read-write-type>

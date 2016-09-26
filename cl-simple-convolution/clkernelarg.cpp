@@ -45,7 +45,7 @@ void CLKernelArg::setReadWriteType(int type){
 int CLKernelArg::getReadWriteType()const{
     return m_read_write_type;
 }
-void CLKernelArg::setData(const std::string&  data){
+void CLKernelArg::setData(const std::string  data){
     m_data = data;
 }
 

@@ -13,11 +13,12 @@ SOURCES += main.cpp \
     clkernelconfigparser.cpp \
     clargdataconverter.cpp \
     clkernelgenerator.cpp \
-    kernelreader.cpp
+    kernelreader.cpp \
+    cllog.cpp
 
 QMAKE_CXXFLAGS += -fpermissive
 
-DEFINES += __CL_ENABLE_EXCEPTIONS=1
+DEFINES += __CL_ENABLE_EXCEPTIONS=1 _DEBUG_LOG_=1
 
 unix:!macx: LIBS += -L/opt/develop/libs/lib/ \
                     -lopencv_calib3d \
@@ -100,4 +101,5 @@ HEADERS += \
     clkernelconfigparser.h \
     clargdataconverter.h \
     clkernelgenerator.h \
-    kernelreader.h
+    kernelreader.h \
+    cllog.h

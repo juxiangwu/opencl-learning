@@ -21,7 +21,7 @@ struct cl_buffer_info_t{
     size_t m_data_element_size;
     size_t m_data_len;
     int m_arg_type;
-    int m_mem_flag;
+    cl_mem_flags m_mem_flag;
 
 };
 
@@ -35,6 +35,10 @@ public:
     bool createKernel(const std::string & kernel_config_file,cl_context  context,cl_device_id  device);
     void release();
     cl_kernel getKernel()const;
+    cl_buffer_info_t * getBufferInfo(const std::string name)const;
+    cl_buffer_map_t getBuffers()const;
+    std::string getName()const;
+    void getOutputBuffres(std::vector<cl_buffer_info_t *> &buffers);
 private:
     bool createProgram(cl_context ctx, cl_device_id device, const std::string & source);
 private:

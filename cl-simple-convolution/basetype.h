@@ -22,6 +22,8 @@
 #define ARG_DATA_TYPE_FLOAT_NAME "float"
 #define ARG_DATA_TYPE_DOUBLE 0x0A
 #define ARG_DATA_TYPE_DOUBLE_NAME "double"
+#define ARG_DATA_TYPE_MEM 0x0B
+#define ARG_DATA_TYPE_MEM_NAME "cl_mem"
 
 #define ARG_READ_WRITE_NONE 0x00
 #define ARG_READ_ONLY 0x01

@@ -82,6 +82,26 @@ bool CLEngine::readBufferResult(cl_mem mem,size_t size,
     return true;
 }
 
+bool CLEngine::readBufferResults(cl_buffer_map_t & buffers){
+    cl_buffer_map_t::iterator it = buffers.begin();
+    bool has_read = true;
+    for(;it != buffers.end();++it){
+        cl_buffer_info_t* buffer = it->second;
+        if(buffer->m_arg_type == ARG_DATA_OUTPUT){
+            bool res = readBufferResult(buffer->m_buffer,
+                       buffer->m_data_element_size * buffer->m_data_len,
+                                        buffer->m_data);
+            if(!res){
+                std::cerr << "CLEngine::read output data failed.\n";
+                has_read = false;
+                break;
+            }
+        }
+
+    }
+    return has_read;
+}
+
 cl_context CLEngine::getContext()const{
     return m_context;
 }
